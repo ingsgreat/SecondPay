@@ -3,6 +3,8 @@ package edu.guet.cn.ui;
 import edu.guet.cn.util.Users;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.*;
@@ -35,6 +37,8 @@ public class MainForm extends JFrame {
                         label1.setVisible(true);
                         scrollPane1.setVisible(true);
                         label2.setVisible(false);
+                        button1.setVisible(true);
+                        button2.setVisible(true);
                     }
 
                     @Override
@@ -77,6 +81,23 @@ public class MainForm extends JFrame {
             }
         };
         table1.setModel(tableModel);
+        button1 = new JButton();//刷新
+        button1.setVisible(false);
+        button1.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setModel(tableModel);
+                    }
+                }
+        );
+        button2 = new JButton();//增加
+        button2.setVisible(false);
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -136,6 +157,18 @@ public class MainForm extends JFrame {
         contentPane.add(label2);
         label2.setBounds(35, 65, 370, 212);
 
+        //---- button1 ----
+        button1.setText("\u5237\u65b0");
+        button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 10f));
+        contentPane.add(button1);
+        button1.setBounds(new Rectangle(new Point(110, 290), button1.getPreferredSize()));
+
+        //---- button2 ----
+        button2.setText("\u589e\u52a0");
+        button2.setFont(button2.getFont().deriveFont(button2.getFont().getSize() + 10f));
+        contentPane.add(button2);
+        button2.setBounds(new Rectangle(new Point(235, 290), button2.getPreferredSize()));
+
 
         contentPane.setPreferredSize(new Dimension(455, 435));
         pack();
@@ -146,7 +179,7 @@ public class MainForm extends JFrame {
 
         java.util.List<Users> list=new ArrayList<Users>();
         Connection conn = null;
-        String url = "jdbc:oracle:thin:@120.77.242.136:1521:orcl";
+        String url = "jdbc:oracle:thin:@47.115.203.48:1521:orcl";
         Statement stmt = null;//SQL语句对象，拼SQL
         String sql = "SELECT * FROM users";
         System.out.println("即将执行的sql：" + sql);
@@ -205,5 +238,7 @@ public class MainForm extends JFrame {
     private JTable table1;
     private Object[][] data = null;
     private String head[] = {"id", "username", "password"};
+    private JButton button1;
+    private JButton button2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
