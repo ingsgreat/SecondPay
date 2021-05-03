@@ -1,9 +1,14 @@
 package edu.guet.cn.ui;
 
+import edu.guet.cn.util.Users;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 
 public class MainForm extends JFrame {
@@ -58,9 +63,17 @@ public class MainForm extends JFrame {
         menu1.add(new JMenuItem("退出"));
         menuBar3 = new JMenuBar();
         menu3 = new JMenu("仓库管理");
+
         label1 = new JLabel();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
+
+        DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        table1.setModel(tableModel);
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -117,6 +130,55 @@ public class MainForm extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
+    public Object[][] queryData() {
+
+        java.util.List<Users> list=new ArrayList<Users>();
+        Connection conn = null;
+        String url = "jdbc:oracle:thin:@120.77.242.136:1521:orcl";
+        Statement stmt = null;//SQL语句对象，拼SQL
+        String sql = "SELECT * FROM users";
+        System.out.println("即将执行的sql：" + sql);
+        ResultSet rs = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");//
+            conn = DriverManager.getConnection(url, "scott", "tiger");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            int i=0;
+            while (rs.next()) {
+                i++;
+                //每循环一次，得到一个用户,并放入容器(List(有序可重复),Set(无序不可重复),Map(key,value))
+                Users user=new Users();
+                user.setId(rs.getInt("ID"));
+                user.setUsername(rs.getString("USERNAME"));
+                user.setPassword(rs.getString("PASSWORD"));
+                list.add(user);
+            }
+        } catch (ClassNotFoundException ee) {
+            ee.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            //释放资源：数据库连接很昂贵
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();//关连接
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            data = new Object[list.size()][head.length];
+            //把集合里的数据放入Object这个二维数组
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = 0; j < head.length; j++) {
+                    data[i][0] = list.get(i).getId();
+                    data[i][1] = list.get(i).getUsername();
+                    data[i][2] = list.get(i).getPassword();
+                }
+            }
+        }
+        return data;
+    }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JMenuBar menuBar1;
@@ -128,5 +190,7 @@ public class MainForm extends JFrame {
     private JLabel label1;
     private JScrollPane scrollPane1;
     private JTable table1;
+    private Object[][] data = null;
+    private String head[] = {"id", "username", "password"};
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
