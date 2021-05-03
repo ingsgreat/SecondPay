@@ -58,7 +58,7 @@ public class LoginForm extends JFrame {
                             boolean isSuccess= MD5.checkpassword(password,encodePassword);
                             if (isSuccess) {
                                 System.out.println("登陆成功");
-                                MainForm mf=new MainForm();
+                                MainForm mf=new MainForm(label2);
                                 mf.setVisible(true);
                                 setVisible(false);
                             } else {

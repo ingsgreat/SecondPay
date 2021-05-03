@@ -12,7 +12,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class MainForm extends JFrame {
-    public MainForm() {
+    public MainForm(JLabel label2) {
+        this.label2 = label2;
         initComponents();
     }
 
@@ -31,7 +32,9 @@ public class MainForm extends JFrame {
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        System.out.println("kkkkkk");
+                        label1.setVisible(true);
+                        scrollPane1.setVisible(true);
+                        label2.setVisible(false);
                     }
 
                     @Override
@@ -113,17 +116,26 @@ public class MainForm extends JFrame {
         setJMenuBar(menuBar1);
 
         //---- label1 ----
-        label1.setText("\u7528\u6237\u4fe1\u606f");
+        label1.setText("\u7528\u6237\u4fe1\u606f");//用户信息
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 39f));
         contentPane.add(label1);
         label1.setBounds(115, 5, 280, 55);
+        label1.setVisible(false);
 
         //======== scrollPane1 ========
         {
             scrollPane1.setViewportView(table1);
         }
+        scrollPane1.setVisible(false);
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(35, 70, 370, 190);
+
+        //---- label2 ----
+        label2.setText("\u6842\u7535\u5c0f\u5356\u90e8");
+        label2.setFont(label2.getFont().deriveFont(label2.getFont().getSize() + 50f));
+        contentPane.add(label2);
+        label2.setBounds(35, 65, 370, 212);
+
 
         contentPane.setPreferredSize(new Dimension(455, 435));
         pack();
@@ -188,6 +200,7 @@ public class MainForm extends JFrame {
     private JMenuBar menuBar3;
     private JMenu menu3;
     private JLabel label1;
+    private JLabel label2;
     private JScrollPane scrollPane1;
     private JTable table1;
     private Object[][] data = null;
