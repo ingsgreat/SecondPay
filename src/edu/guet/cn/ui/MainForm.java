@@ -1,5 +1,6 @@
 package edu.guet.cn.ui;
 
+import edu.guet.cn.util.Product;
 import edu.guet.cn.util.Users;
 
 import java.awt.*;
@@ -34,11 +35,13 @@ public class MainForm extends JFrame {
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        label1.setVisible(true);
-                        scrollPane1.setVisible(true);
-                        label2.setVisible(false);
-                        button1.setVisible(true);
-                        button2.setVisible(true);
+                        label1.setVisible(true);//用户信息
+                        scrollPane1.setVisible(true);//用户表
+                        label2.setVisible(false);//桂电小卖部
+                        label3.setVisible(false);//商品信息
+                        scrollPane2.setVisible(false);//商品表
+                        button1.setVisible(true);//刷新
+                        button2.setVisible(true);//增加
                     }
 
                     @Override
@@ -76,6 +79,8 @@ public class MainForm extends JFrame {
                         label1.setVisible(false);
                         scrollPane1.setVisible(false);
                         label2.setVisible(false);
+                        button1.setVisible(false);
+                        button2.setVisible(false);
                         label3.setVisible(true);
                         scrollPane2.setVisible(true);
 
@@ -118,11 +123,17 @@ public class MainForm extends JFrame {
         table2 = new JTable();
         table2.setVisible(false);
 
-        DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+        DefaultTableModel tableModel = new DefaultTableModel(queryData(), uhead) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+        DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         table1.setModel(tableModel);
         button1 = new JButton();//刷新
         button1.setVisible(false);
@@ -130,7 +141,7 @@ public class MainForm extends JFrame {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
+                        DefaultTableModel tableModel = new DefaultTableModel(queryData(), uhead) {
                             public boolean isCellEditable(int row, int column) {
                                 return false;
                             }
@@ -139,6 +150,9 @@ public class MainForm extends JFrame {
                     }
                 }
         );
+
+        table2.setModel(ptableModel);
+
         button2 = new JButton();//增加
         button2.setVisible(false);
 
@@ -268,13 +282,65 @@ public class MainForm extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            data = new Object[list.size()][head.length];
+            data = new Object[list.size()][uhead.length];
             //把集合里的数据放入Object这个二维数组
             for (int i = 0; i < list.size(); i++) {
-                for (int j = 0; j < head.length; j++) {
+                for (int j = 0; j < uhead.length; j++) {
                     data[i][0] = list.get(i).getId();
                     data[i][1] = list.get(i).getUsername();
                     data[i][2] = list.get(i).getPassword();
+                }
+            }
+        }
+        return data;
+    }
+
+    public Object[][] pqueryData() {
+
+        java.util.List<Product> list=new ArrayList<Product>();
+        Connection conn = null;
+        String url = "jdbc:oracle:thin:@47.115.203.48:1521:orcl";
+        Statement stmt = null;//SQL语句对象，拼SQL
+        String sql = "SELECT * FROM sproduct";
+        System.out.println("即将执行的sql：" + sql);
+        ResultSet rs = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");//
+            conn = DriverManager.getConnection(url, "scott", "tiger");
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            int i=0;
+            while (rs.next()) {
+                i++;
+                //每循环一次，得到一个商品,并放入容器(List(有序可重复),Set(无序不可重复),Map(key,value))
+                Product product=new Product();
+                product.setPid(rs.getInt("PID"));
+                product.setPname(rs.getString("PNAME"));
+                product.setPrice(rs.getFloat("PRICE"));
+                product.setAmount(rs.getInt("AMOUNT"));
+                list.add(product);
+            }
+        } catch (ClassNotFoundException ee) {
+            ee.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            //释放资源：数据库连接很昂贵
+            try {
+                rs.close();
+                stmt.close();
+                conn.close();//关连接
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            data = new Object[list.size()][phead.length];
+            //把集合里的数据放入Object这个二维数组
+            for (int i = 0; i < list.size(); i++) {
+                for (int j = 0; j < phead.length; j++) {
+                    data[i][0] = list.get(i).getPid();
+                    data[i][1] = list.get(i).getPname();
+                    data[i][2] = list.get(i).getPrice();
+                    data[i][3] = list.get(i).getAmount();
                 }
             }
         }
@@ -295,7 +361,8 @@ public class MainForm extends JFrame {
     private JButton button1;
     private JButton button2;
     private Object[][] data = null;
-    private String head[] = {"id", "username", "password"};
+    private String uhead[] = {"id", "username", "password"};
+    private String phead[] = {"id", "pname", "price","amount"};
     private JLabel label3;
     private JScrollPane scrollPane2;
     private JTable table2;
