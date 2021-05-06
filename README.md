@@ -38,3 +38,20 @@ button1 = new JButton();
 insert into users values(888000,'sgc','sgc1234');
 insert into users values(000000,'sgc','sgc1234');
 ```
+## 5、加入商品表product
+```sql
+create table sproduct(
+pid Number(4) Primary key,
+pname varchar2(20),
+price number(6),
+amonut number(4)
+);
+```
+
+```sql
+insert into sproduct values(1111,'百事可乐',3.5,100);
+insert into sproduct values(2222,'李子园牛奶',5.5,100);
+insert into sproduct values(3333,'焦糖瓜子',6,100);
+insert into sproduct values(4444,'紫云',10,100);
+insert into sproduct values(5555,'草稿纸',2.5,100);
+```
