@@ -98,7 +98,8 @@
       <workItem from="1620007880822" duration="3823000" />
       <workItem from="1620029803314" duration="4583000" />
       <workItem from="1620039618349" duration="5172000" />
-      <workItem from="1620051830640" duration="3711000" />
+      <workItem from="1620051830640" duration="3894000" />
+      <workItem from="1620288422321" duration="6112000" />
     </task>
     <task id="LOCAL-00001" summary="增加了JTable">
       <created>1620031135511</created>
@@ -128,7 +129,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620054144015</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="实现刷新功能">
+      <created>1620055576904</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1620055576904</updated>
+    </task>
+    <task id="LOCAL-00006" summary="添加sproduct表">
+      <created>1620292766816</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1620292766816</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +167,8 @@
     <MESSAGE value="增加了管理用户、商品管理、仓库管理" />
     <MESSAGE value="实现了查看用户" />
     <MESSAGE value="实现了查看用户和“桂电小卖部”之间的切换" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了查看用户和“桂电小卖部”之间的切换" />
+    <MESSAGE value="实现刷新功能" />
+    <MESSAGE value="添加sproduct表" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加sproduct表" />
   </component>
 </project>

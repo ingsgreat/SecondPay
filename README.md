@@ -55,3 +55,26 @@ insert into sproduct values(3333,'焦糖瓜子',6,100);
 insert into sproduct values(4444,'紫云',10,100);
 insert into sproduct values(5555,'草稿纸',2.5,100);
 ```
+## 6、在MainForm中加入商品信息jlable3和jtable2
+```java
+private JLabel label3;
+                              private JScrollPane scrollPane2;
+                              private JTable table2;
+
+ //---- label3 ----
+        label3.setText("\u5546\u54c1\u4fe1\u606f");
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 40f));
+        contentPane.add(label3);
+        label3.setBounds(240, 0, 295, 75);
+
+        //======== scrollPane2 ========
+        {
+            scrollPane2.setViewportView(table2);
+        }
+        contentPane.add(scrollPane2);
+        scrollPane2.setBounds(110, 60, scrollPane2.getPreferredSize().width, 293);
+
+        contentPane.setPreferredSize(new Dimension(695, 435));
+        pack();
+        setLocationRelativeTo(getOwner());
+```

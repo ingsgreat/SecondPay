@@ -63,7 +63,41 @@ public class MainForm extends JFrame {
         menuBar2 = new JMenuBar();
         menu2 = new JMenu("商品管理");
         menu2.add(new JMenuItem("添加商品"));
-        menu2.add(new JMenuItem("查看库存"));
+        JMenuItem viewUserMenuItem1=new JMenuItem("查看库存");
+        viewUserMenuItem1.addMouseListener(
+                new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        System.out.println("鼠标点了我");
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        label1.setVisible(false);
+                        scrollPane1.setVisible(false);
+                        label2.setVisible(false);
+                        label3.setVisible(true);
+                        scrollPane2.setVisible(true);
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                }
+        );
+        menu2.add(viewUserMenuItem1);
 
         //分隔符
         menu1.addSeparator();
@@ -71,9 +105,18 @@ public class MainForm extends JFrame {
         menuBar3 = new JMenuBar();
         menu3 = new JMenu("仓库管理");
 
+
         label1 = new JLabel();
         scrollPane1 = new JScrollPane();
         table1 = new JTable();
+        label2 = new JLabel();
+        button1 = new JButton();
+        button2 = new JButton();
+        label3 = new JLabel();
+        label3.setVisible(false);
+        scrollPane2 = new JScrollPane();
+        table2 = new JTable();
+        table2.setVisible(false);
 
         DefaultTableModel tableModel = new DefaultTableModel(queryData(), head) {
             public boolean isCellEditable(int row, int column) {
@@ -137,10 +180,10 @@ public class MainForm extends JFrame {
         setJMenuBar(menuBar1);
 
         //---- label1 ----
-        label1.setText("\u7528\u6237\u4fe1\u606f");//用户信息
+        label1.setText("\u7528\u6237\u4fe1\u606f");
         label1.setFont(label1.getFont().deriveFont(label1.getFont().getSize() + 39f));
         contentPane.add(label1);
-        label1.setBounds(115, 5, 280, 55);
+        label1.setBounds(160, 10, 280, 55);
         label1.setVisible(false);
 
         //======== scrollPane1 ========
@@ -149,7 +192,7 @@ public class MainForm extends JFrame {
         }
         scrollPane1.setVisible(false);
         contentPane.add(scrollPane1);
-        scrollPane1.setBounds(35, 70, 370, 190);
+        scrollPane1.setBounds(80, 80, 370, 190);
 
         //---- label2 ----
         label2.setText("\u6842\u7535\u5c0f\u5356\u90e8");
@@ -161,16 +204,29 @@ public class MainForm extends JFrame {
         button1.setText("\u5237\u65b0");
         button1.setFont(button1.getFont().deriveFont(button1.getFont().getSize() + 10f));
         contentPane.add(button1);
-        button1.setBounds(new Rectangle(new Point(110, 290), button1.getPreferredSize()));
+        button1.setBounds(new Rectangle(new Point(45, 290), button1.getPreferredSize()));
 
         //---- button2 ----
         button2.setText("\u589e\u52a0");
         button2.setFont(button2.getFont().deriveFont(button2.getFont().getSize() + 10f));
         contentPane.add(button2);
-        button2.setBounds(new Rectangle(new Point(235, 290), button2.getPreferredSize()));
+        button2.setBounds(new Rectangle(new Point(135, 290), button2.getPreferredSize()));
 
+        //---- label3 ----
+        label3.setText("\u5546\u54c1\u4fe1\u606f");
+        label3.setFont(label3.getFont().deriveFont(label3.getFont().getSize() + 40f));
+        contentPane.add(label3);
+        label3.setBounds(160, 0, 295, 75);
 
-        contentPane.setPreferredSize(new Dimension(455, 435));
+        //======== scrollPane2 ========
+        {
+            scrollPane2.setViewportView(table2);
+        }
+        scrollPane2.setVisible(false);
+        contentPane.add(scrollPane2);
+        scrollPane2.setBounds(35, 75, scrollPane2.getPreferredSize().width, 200);
+
+        contentPane.setPreferredSize(new Dimension(530, 435));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -233,12 +289,15 @@ public class MainForm extends JFrame {
     private JMenuBar menuBar3;
     private JMenu menu3;
     private JLabel label1;
-    private JLabel label2;
     private JScrollPane scrollPane1;
     private JTable table1;
-    private Object[][] data = null;
-    private String head[] = {"id", "username", "password"};
+    private JLabel label2;
     private JButton button1;
     private JButton button2;
+    private Object[][] data = null;
+    private String head[] = {"id", "username", "password"};
+    private JLabel label3;
+    private JScrollPane scrollPane2;
+    private JTable table2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
