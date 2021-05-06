@@ -83,7 +83,6 @@ public class MainForm extends JFrame {
                         button2.setVisible(false);
                         label3.setVisible(true);
                         scrollPane2.setVisible(true);
-
                     }
 
                     @Override
