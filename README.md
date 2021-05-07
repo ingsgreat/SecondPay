@@ -35,17 +35,17 @@ button1 = new JButton();
 ```
 ## 4、测试刷新功能
 ```sql
-insert into users values(888000,'sgc','sgc1234');
-insert into users values(000000,'sgc','sgc1234');
+
+insert into users values(112222,'sgc','XGcEDsLGA3nplcIn4cQwAw==');
 ```
 ## 5、加入商品表product
 ```sql
 create table sproduct(
-pid Number(4) Primary key,
-pname varchar2(20),
-price number(6),
-amonut number(4)
-);
+  pid Number(4) Primary key,
+  pname varchar2(20),
+  price number(6),
+  amount number(4)
+  );
 ```
 
 ```sql

@@ -3,7 +3,7 @@ package edu.guet.cn.util;
 public class Product {
     private int pid;
     private String pname;
-    private float price;
+    private int price;
     private int amount;
 
     public int getPid() {
@@ -22,11 +22,11 @@ public class Product {
         this.pname = pname;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -83,6 +83,7 @@ public class MainForm extends JFrame {
                         button2.setVisible(false);
                         label3.setVisible(true);
                         scrollPane2.setVisible(true);
+                        pqueryData();
                     }
 
                     @Override
@@ -127,6 +128,7 @@ public class MainForm extends JFrame {
                 return false;
             }
         };
+
         DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -244,7 +246,7 @@ public class MainForm extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
-    public Object[][] queryData() {
+    public Object[][] queryData() {  //用户
 
         java.util.List<Users> list=new ArrayList<Users>();
         Connection conn = null;
@@ -294,7 +296,7 @@ public class MainForm extends JFrame {
         return data;
     }
 
-    public Object[][] pqueryData() {
+    public Object[][] pqueryData() {  //商品
 
         java.util.List<Product> list=new ArrayList<Product>();
         Connection conn = null;
@@ -315,7 +317,7 @@ public class MainForm extends JFrame {
                 Product product=new Product();
                 product.setPid(rs.getInt("PID"));
                 product.setPname(rs.getString("PNAME"));
-                product.setPrice(rs.getFloat("PRICE"));
+                product.setPrice(rs.getInt("PRICE"));
                 product.setAmount(rs.getInt("AMOUNT"));
                 list.add(product);
             }
