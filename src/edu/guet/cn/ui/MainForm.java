@@ -23,25 +23,25 @@ public class MainForm extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         menuBar1 = new JMenuBar();
-        menu1 = new JMenu("ç”¨æˆ·ç®¡ç†");
-        menu1.add(new JMenuItem("æ·»åŠ ç”¨æˆ·"));
-        JMenuItem viewUserMenuItem=new JMenuItem("æŸ¥çœ‹ç”¨æˆ·");
+        menu1 = new JMenu("ÓÃ»§¹ÜÀí");
+        menu1.add(new JMenuItem("Ìí¼ÓÓÃ»§"));
+        JMenuItem viewUserMenuItem=new JMenuItem("²é¿´ÓÃ»§");
         viewUserMenuItem.addMouseListener(
                 new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("é¼ æ ‡ç‚¹äº†æˆ‘");
+                        System.out.println("Êó±êµãÁËÎÒ");
                     }
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        label1.setVisible(true);//ç”¨æˆ·ä¿¡æ¯
-                        scrollPane1.setVisible(true);//ç”¨æˆ·è¡¨
-                        label2.setVisible(false);//æ¡‚ç”µå°å–éƒ¨
-                        label3.setVisible(false);//å•†å“ä¿¡æ¯
-                        scrollPane2.setVisible(false);//å•†å“è¡¨
-                        button1.setVisible(true);//åˆ·æ–°
-                        button2.setVisible(true);//å¢åŠ 
+                        label1.setVisible(true);//ÓÃ»§ĞÅÏ¢
+                        scrollPane1.setVisible(true);//ÓÃ»§±í
+                        label2.setVisible(false);//¹ğµçĞ¡Âô²¿
+                        label3.setVisible(false);//ÉÌÆ·ĞÅÏ¢
+                        scrollPane2.setVisible(false);//ÉÌÆ·±í
+                        button1.setVisible(true);//Ë¢ĞÂ
+                        button2.setVisible(true);//Ôö¼Ó
                     }
 
                     @Override
@@ -61,17 +61,17 @@ public class MainForm extends JFrame {
                 }
         );
         menu1.add(viewUserMenuItem);
-        menu1.add(new JMenuItem("ä¿®æ”¹å¯†ç "));
+        menu1.add(new JMenuItem("ĞŞ¸ÄÃÜÂë"));
 
         menuBar2 = new JMenuBar();
-        menu2 = new JMenu("å•†å“ç®¡ç†");
-        menu2.add(new JMenuItem("æ·»åŠ å•†å“"));
-        JMenuItem viewUserMenuItem1=new JMenuItem("æŸ¥çœ‹åº“å­˜");
+        menu2 = new JMenu("ÉÌÆ·¹ÜÀí");
+        menu2.add(new JMenuItem("Ìí¼ÓÉÌÆ·"));
+        JMenuItem viewUserMenuItem1=new JMenuItem("²é¿´¿â´æ");
         viewUserMenuItem1.addMouseListener(
                 new MouseListener() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        System.out.println("é¼ æ ‡ç‚¹äº†æˆ‘");
+                        System.out.println("Êó±êµãÁËÎÒ");
                     }
 
                     @Override
@@ -103,11 +103,11 @@ public class MainForm extends JFrame {
         );
         menu2.add(viewUserMenuItem1);
 
-        //åˆ†éš”ç¬¦
+        //·Ö¸ô·û
         menu1.addSeparator();
-        menu1.add(new JMenuItem("é€€å‡º"));
+        menu1.add(new JMenuItem("ÍË³ö"));
         menuBar3 = new JMenuBar();
-        menu3 = new JMenu("ä»“åº“ç®¡ç†");
+        menu3 = new JMenu("²Ö¿â¹ÜÀí");
 
 
         label1 = new JLabel();
@@ -134,7 +134,7 @@ public class MainForm extends JFrame {
         };
 
         table1.setModel(tableModel);
-        button1 = new JButton();//åˆ·æ–°
+        button1 = new JButton();//Ë¢ĞÂ
         button1.setVisible(false);
         button1.addActionListener(
                 new ActionListener() {
@@ -152,7 +152,7 @@ public class MainForm extends JFrame {
 
         table2.setModel(ptableModel);
 
-        button2 = new JButton();//å¢åŠ 
+        button2 = new JButton();//Ôö¼Ó
         button2.setVisible(false);
 
         //======== this ========
@@ -249,9 +249,9 @@ public class MainForm extends JFrame {
         java.util.List<Users> list=new ArrayList<Users>();
         Connection conn = null;
         String url = "jdbc:oracle:thin:@47.115.203.48:1521:orcl";
-        Statement stmt = null;//SQLè¯­å¥å¯¹è±¡ï¼Œæ‹¼SQL
+        Statement stmt = null;//SQLÓï¾ä¶ÔÏó£¬Æ´SQL
         String sql = "SELECT * FROM users";
-        System.out.println("å³å°†æ‰§è¡Œçš„sqlï¼š" + sql);
+        System.out.println("¼´½«Ö´ĞĞµÄsql£º" + sql);
         ResultSet rs = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");//
@@ -261,7 +261,7 @@ public class MainForm extends JFrame {
             int i=0;
             while (rs.next()) {
                 i++;
-                //æ¯å¾ªç¯ä¸€æ¬¡ï¼Œå¾—åˆ°ä¸€ä¸ªç”¨æˆ·,å¹¶æ”¾å…¥å®¹å™¨(List(æœ‰åºå¯é‡å¤),Set(æ— åºä¸å¯é‡å¤),Map(key,value))
+                //Ã¿Ñ­»·Ò»´Î£¬µÃµ½Ò»¸öÓÃ»§,²¢·ÅÈëÈİÆ÷(List(ÓĞĞò¿ÉÖØ¸´),Set(ÎŞĞò²»¿ÉÖØ¸´),Map(key,value))
                 Users user=new Users();
                 user.setId(rs.getInt("ID"));
                 user.setUsername(rs.getString("USERNAME"));
@@ -273,16 +273,16 @@ public class MainForm extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            //é‡Šæ”¾èµ„æºï¼šæ•°æ®åº“è¿æ¥å¾ˆæ˜‚è´µ
+            //ÊÍ·Å×ÊÔ´£ºÊı¾İ¿âÁ¬½ÓºÜ°º¹ó
             try {
                 rs.close();
                 stmt.close();
-                conn.close();//å…³è¿æ¥
+                conn.close();//¹ØÁ¬½Ó
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             data = new Object[list.size()][uhead.length];
-            //æŠŠé›†åˆé‡Œçš„æ•°æ®æ”¾å…¥Objectè¿™ä¸ªäºŒç»´æ•°ç»„
+            //°Ñ¼¯ºÏÀïµÄÊı¾İ·ÅÈëObjectÕâ¸ö¶şÎ¬Êı×é
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < uhead.length; j++) {
                     data[i][0] = list.get(i).getId();
@@ -299,9 +299,9 @@ public class MainForm extends JFrame {
         java.util.List<Product> list=new ArrayList<Product>();
         Connection conn = null;
         String url = "jdbc:oracle:thin:@47.115.203.48:1521:orcl";
-        Statement stmt = null;//SQLè¯­å¥å¯¹è±¡ï¼Œæ‹¼SQL
+        Statement stmt = null;//SQLÓï¾ä¶ÔÏó£¬Æ´SQL
         String sql = "SELECT * FROM sproduct";
-        System.out.println("å³å°†æ‰§è¡Œçš„sqlï¼š" + sql);
+        System.out.println("¼´½«Ö´ĞĞµÄsql£º" + sql);
         ResultSet rs = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");//
@@ -311,7 +311,7 @@ public class MainForm extends JFrame {
             int i=0;
             while (rs.next()) {
                 i++;
-                //æ¯å¾ªç¯ä¸€æ¬¡ï¼Œå¾—åˆ°ä¸€ä¸ªå•†å“,å¹¶æ”¾å…¥å®¹å™¨(List(æœ‰åºå¯é‡å¤),Set(æ— åºä¸å¯é‡å¤),Map(key,value))
+                //Ã¿Ñ­»·Ò»´Î£¬µÃµ½Ò»¸öÉÌÆ·,²¢·ÅÈëÈİÆ÷(List(ÓĞĞò¿ÉÖØ¸´),Set(ÎŞĞò²»¿ÉÖØ¸´),Map(key,value))
                 Product product=new Product();
                 product.setPid(rs.getInt("PID"));
                 product.setPname(rs.getString("PNAME"));
@@ -324,16 +324,16 @@ public class MainForm extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            //é‡Šæ”¾èµ„æºï¼šæ•°æ®åº“è¿æ¥å¾ˆæ˜‚è´µ
+            //ÊÍ·Å×ÊÔ´£ºÊı¾İ¿âÁ¬½ÓºÜ°º¹ó
             try {
                 rs.close();
                 stmt.close();
-                conn.close();//å…³è¿æ¥
+                conn.close();//¹ØÁ¬½Ó
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
             data = new Object[list.size()][phead.length];
-            //æŠŠé›†åˆé‡Œçš„æ•°æ®æ”¾å…¥Objectè¿™ä¸ªäºŒç»´æ•°ç»„
+            //°Ñ¼¯ºÏÀïµÄÊı¾İ·ÅÈëObjectÕâ¸ö¶şÎ¬Êı×é
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < phead.length; j++) {
                     data[i][0] = list.get(i).getPid();

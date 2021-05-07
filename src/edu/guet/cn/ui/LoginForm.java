@@ -32,10 +32,10 @@ public class LoginForm extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label1 = new JLabel();
-        textField1 = new JTextField("liwei");//username
+        textField1 = new JTextField("sgc");//username
         label2 = new JLabel();
-        textField2 = new JTextField("lw1234");//password
-        button1 = new JButton();//ç™»å½•æŒ‰é’®
+        textField2 = new JTextField("sgc1234");//password
+        button1 = new JButton();//µÇÂ¼°´Å¥
         button1.addActionListener(
                 new ActionListener() {
                     @Override
@@ -57,12 +57,12 @@ public class LoginForm extends JFrame {
                             String encodePassword=rs.getString(1);
                             boolean isSuccess= MD5.checkpassword(password,encodePassword);
                             if (isSuccess) {
-                                System.out.println("ç™»é™†æˆåŠŸ");
+                                System.out.println("µÇÂ½³É¹¦");
                                 MainForm mf=new MainForm(label2);
                                 mf.setVisible(true);
                                 setVisible(false);
                             } else {
-                                System.out.println("ç™»å½•å¤±è´¥");
+                                System.out.println("µÇÂ¼Ê§°Ü");
                             }
 
                         } catch (ClassNotFoundException throwables) {
@@ -86,7 +86,7 @@ public class LoginForm extends JFrame {
                 }
         );
 
-        button2 = new JButton();//é€€å‡ºæŒ‰é’®
+        button2 = new JButton();//ÍË³ö°´Å¥
 
 
         //======== this ========

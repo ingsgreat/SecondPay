@@ -35,6 +35,6 @@ public class MD5 {
             return false;
     }
 	public static void main(String args[]) throws Exception{
-		System.out.println(encoderByMd5("lw1234"));
+		System.out.println(encoderByMd5("sgc1234"));
 	}
 }
