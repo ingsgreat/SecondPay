@@ -129,11 +129,7 @@ public class MainForm extends JFrame {
             }
         };
 
-        DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+
 
         table1.setModel(tableModel);
         button1 = new JButton();//Ë¢ÐÂ
@@ -152,7 +148,7 @@ public class MainForm extends JFrame {
                 }
         );
 
-        table2.setModel(ptableModel);
+
 
         button2 = new JButton();//Ôö¼Ó
         button2.setVisible(false);
@@ -320,6 +316,12 @@ public class MainForm extends JFrame {
                 product.setPrice(rs.getInt("PRICE"));
                 product.setAmount(rs.getInt("AMOUNT"));
                 list.add(product);
+                DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table2.setModel(ptableModel);
             }
         } catch (ClassNotFoundException ee) {
             ee.printStackTrace();
