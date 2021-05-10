@@ -66,7 +66,7 @@ public class MainForm extends JFrame {
         menuBar2 = new JMenuBar();
         menu2 = new JMenu("商品管理");
         menu2.add(new JMenuItem("添加商品"));
-        JMenuItem viewUserMenuItem1=new JMenuItem("查看库存");
+        JMenuItem viewUserMenuItem1=new JMenuItem("查看商品");
         viewUserMenuItem1.addMouseListener(
                 new MouseListener() {
                     @Override
@@ -83,7 +83,13 @@ public class MainForm extends JFrame {
                         button2.setVisible(false);
                         label3.setVisible(true);
                         scrollPane2.setVisible(true);
-                        pqueryData();
+                        table2.setVisible(true);
+                        DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table2.setModel(ptableModel);
                     }
 
                     @Override
@@ -316,12 +322,7 @@ public class MainForm extends JFrame {
                 product.setPrice(rs.getInt("PRICE"));
                 product.setAmount(rs.getInt("AMOUNT"));
                 list.add(product);
-                DefaultTableModel ptableModel = new DefaultTableModel(pqueryData(), phead) {
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-                table2.setModel(ptableModel);
+
             }
         } catch (ClassNotFoundException ee) {
             ee.printStackTrace();
@@ -336,18 +337,18 @@ public class MainForm extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            data = new Object[list.size()][phead.length];
+            pdata = new Object[list.size()][phead.length];
             //把集合里的数据放入Object这个二维数组
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < phead.length; j++) {
-                    data[i][0] = list.get(i).getPid();
-                    data[i][1] = list.get(i).getPname();
-                    data[i][2] = list.get(i).getPrice();
-                    data[i][3] = list.get(i).getAmount();
+                    pdata[i][0] = list.get(i).getPid();
+                    pdata[i][1] = list.get(i).getPname();
+                    pdata[i][2] = list.get(i).getPrice();
+                    pdata[i][3] = list.get(i).getAmount();
                 }
             }
         }
-        return data;
+        return pdata;
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
@@ -364,6 +365,7 @@ public class MainForm extends JFrame {
     private JButton button1;
     private JButton button2;
     private Object[][] data = null;
+    private Object[][] pdata = null;
     private String uhead[] = {"id", "username", "password"};
     private String phead[] = {"id", "pname", "price","amount"};
     private JLabel label3;
